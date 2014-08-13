@@ -17,7 +17,7 @@ module Autodoc
 
     def pathname
       @path ||= begin
-        payload = @context.example.file_path.gsub(%r<\./spec/requests/(.+)_spec\.rb>, '\1.md')
+        payload = "#{@context.class.name.split("::").last.underscore}.md"
         Autodoc.configuration.pathname + payload
       end
     end
@@ -176,12 +176,12 @@ module Autodoc
       if @context.respond_to?(:description)
         @context.description.strip_heredoc
       else
-        "#{@context.example.description.capitalize}."
+        #"#{@context.example.description.capitalize}."
       end
     end
 
     def path
-      @context.example.full_description[%r<(GET|POST|PATCH|PUT|DELETE) ([^ ]+)>, 2]
+      #@context.example.full_description[%r<(GET|POST|PATCH|PUT|DELETE) ([^ ]+)>, 2]
     end
 
     def parameters_section
